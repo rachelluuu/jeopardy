@@ -5,9 +5,7 @@ export const fetchQAs = () => (dispatch) => {
 
   dispatch(qasLoading(true));
 
-  return fetch(serviceUrl + 'api/clues', {
-    mode: 'cors'
-  })
+  return fetch(serviceUrl + 'api/clues')
     .then(response => {
       if (response.ok) {
         return response;
