@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/jeopardy/static/css/main.e654fce1.chunk.css",
+    "main.js": "/jeopardy/static/js/main.fd2922ea.chunk.js",
+    "main.js.map": "/jeopardy/static/js/main.fd2922ea.chunk.js.map",
+    "runtime-main.js": "/jeopardy/static/js/runtime-main.a21f22d2.js",
+    "runtime-main.js.map": "/jeopardy/static/js/runtime-main.a21f22d2.js.map",
+    "static/css/2.a8360274.chunk.css": "/jeopardy/static/css/2.a8360274.chunk.css",
+    "static/js/2.b1853ec6.chunk.js": "/jeopardy/static/js/2.b1853ec6.chunk.js",
+    "static/js/2.b1853ec6.chunk.js.map": "/jeopardy/static/js/2.b1853ec6.chunk.js.map",
+    "index.html": "/jeopardy/index.html",
+    "precache-manifest.488e9fee4d1d412902183dcc6e467733.js": "/jeopardy/precache-manifest.488e9fee4d1d412902183dcc6e467733.js",
+    "service-worker.js": "/jeopardy/service-worker.js",
+    "static/css/2.a8360274.chunk.css.map": "/jeopardy/static/css/2.a8360274.chunk.css.map",
+    "static/css/main.e654fce1.chunk.css.map": "/jeopardy/static/css/main.e654fce1.chunk.css.map",
+    "static/media/font-awesome.css": "/jeopardy/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a21f22d2.js",
+    "static/css/2.a8360274.chunk.css",
+    "static/js/2.b1853ec6.chunk.js",
+    "static/css/main.e654fce1.chunk.css",
+    "static/js/main.fd2922ea.chunk.js"
+  ]
+}
