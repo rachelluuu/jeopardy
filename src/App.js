@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Main from './components/MainComponent';
 import './App.css';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
 
@@ -12,11 +12,11 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <div className="App">
             <Main />
           </div>
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     );
   }

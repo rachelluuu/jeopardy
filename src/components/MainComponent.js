@@ -49,9 +49,9 @@ class Main extends Component {
         <TransitionGroup>
           <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <Switch location={this.props.location}>
-              <Route exact path='/jeopardy/search' component={SearchPage} />
+              <Route exact path='/' component={SearchPage} />
               <Route path='/jeopardy/search/:qaId' component={QAWithIdPage} />
-              <Redirect to="/jeopardy/search" />
+              <Redirect to="/" />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
