@@ -1,20 +1,21 @@
 import React from 'react';
-import { Card, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardHeader, CardBody } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 
 function RenderQA({qa}) {
     return (
         /*<FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>*/
             <Card>
+                <CardHeader className="bg-primary text-white"><b>{qa.question}</b></CardHeader>
                 <CardBody>
-                    <CardTitle>Question: {qa.question}</CardTitle>
-                    Answer: {qa.answer} 
-                    <hr/>
-                    <ul>
-                    <li>Value: {qa.value}</li>
-                    <li>Category: {qa.category.title}</li>
-                    <li>Air Date: {qa.airdate}</li>
-                    </ul>
+                    <dl className="row p-1">
+                        <dt className="col-6">Answer</dt>
+                        <dd className="col-6"><b>{qa.answer}</b></dd>
+                        <dt className="col-6">Value</dt>
+                        <dd className="col-6">{qa.value}</dd>
+                        <dt className="col-6">Air Date</dt>
+                        <dd className="col-6">{qa.airdate}</dd>
+                    </dl>
                 </CardBody>
             </Card>
         /*</FadeTransform> */
@@ -41,11 +42,6 @@ const QADetail = props => {
             </div>
         );
     }
-
-    console.log(props);
-    let qa = props.qa;
-    if (qa == null)
-        return( <div></div> );
 
     return (
         <div className="container">

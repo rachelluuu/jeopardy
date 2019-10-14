@@ -5,7 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchQAs } from '../redux/ActionCreators';
+import { fetchQAs, filterQAs } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
@@ -15,14 +15,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchQAs: () => { dispatch(fetchQAs()); }
+  fetchQAs: () => dispatch(fetchQAs()),
+  filterQAs: (c) => dispatch(filterQAs(c))
 });
 
 class Main extends Component {
-
-  onDishSelect(dishId) {
-    this.setState({ selectedDish: dishId });
-  }
 
   componentDidMount() {
     this.props.fetchQAs();
@@ -31,8 +28,7 @@ class Main extends Component {
   render() {
     const SearchPage = () => (
       <div className="container">
-        <Search qas={this.props.qas} onClick={(qaId) => this.onQASelect(qaId)} />
-        <QADetail qa={this.props.qas.qas.filter((qa) => qa.id === this.props.selectedQa)[0]} />
+        <Search appProps={this.props} />
       </div>
     );
 
@@ -51,7 +47,7 @@ class Main extends Component {
             <Switch location={this.props.location}>
               <Route exact path='/search' component={SearchPage} />
               <Route path='/search/:qaId' component={QAWithIdPage} />
-              <Redirect to="/search" />
+              <Redirect to='/search' />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
