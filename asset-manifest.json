@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/jeopardy/static/css/main.e654fce1.chunk.css",
-    "main.js": "/jeopardy/static/js/main.271c50a7.chunk.js",
-    "main.js.map": "/jeopardy/static/js/main.271c50a7.chunk.js.map",
+    "main.js": "/jeopardy/static/js/main.8c4796c2.chunk.js",
+    "main.js.map": "/jeopardy/static/js/main.8c4796c2.chunk.js.map",
     "runtime-main.js": "/jeopardy/static/js/runtime-main.a21f22d2.js",
     "runtime-main.js.map": "/jeopardy/static/js/runtime-main.a21f22d2.js.map",
-    "static/css/2.a8360274.chunk.css": "/jeopardy/static/css/2.a8360274.chunk.css",
-    "static/js/2.2c3e6f29.chunk.js": "/jeopardy/static/js/2.2c3e6f29.chunk.js",
-    "static/js/2.2c3e6f29.chunk.js.map": "/jeopardy/static/js/2.2c3e6f29.chunk.js.map",
+    "static/css/2.ce5a42f5.chunk.css": "/jeopardy/static/css/2.ce5a42f5.chunk.css",
+    "static/js/2.c80fb37c.chunk.js": "/jeopardy/static/js/2.c80fb37c.chunk.js",
+    "static/js/2.c80fb37c.chunk.js.map": "/jeopardy/static/js/2.c80fb37c.chunk.js.map",
     "index.html": "/jeopardy/index.html",
-    "precache-manifest.e4a0752801028c1f33483fd55787540d.js": "/jeopardy/precache-manifest.e4a0752801028c1f33483fd55787540d.js",
+    "precache-manifest.148cfa3006a29005c0013d03a1b92909.js": "/jeopardy/precache-manifest.148cfa3006a29005c0013d03a1b92909.js",
     "service-worker.js": "/jeopardy/service-worker.js",
-    "static/css/2.a8360274.chunk.css.map": "/jeopardy/static/css/2.a8360274.chunk.css.map",
+    "static/css/2.ce5a42f5.chunk.css.map": "/jeopardy/static/css/2.ce5a42f5.chunk.css.map",
     "static/css/main.e654fce1.chunk.css.map": "/jeopardy/static/css/main.e654fce1.chunk.css.map",
     "static/media/font-awesome.css": "/jeopardy/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.a21f22d2.js",
-    "static/css/2.a8360274.chunk.css",
-    "static/js/2.2c3e6f29.chunk.js",
+    "static/css/2.ce5a42f5.chunk.css",
+    "static/js/2.c80fb37c.chunk.js",
     "static/css/main.e654fce1.chunk.css",
-    "static/js/main.271c50a7.chunk.js"
+    "static/js/main.8c4796c2.chunk.js"
   ]
 }
