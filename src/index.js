@@ -6,10 +6,10 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
-ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL}>
-  <App /></BrowserRouter>, document.getElementById('root'));
+ReactDOM.render(<HashRouter basename={process.env.PUBLIC_URL}>
+  <App /></HashRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
