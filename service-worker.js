@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/jeopardy/precache-manifest.108c790562fc26f9926aa5020dde8604.js"
+  "/jeopardy/precache-manifest.7c22ae44e7bd910b8933a8bcc93cbca1.js"
 );
 
 self.addEventListener('message', (event) => {
