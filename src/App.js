@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
           <div className="App">
             <Main />
           </div>
