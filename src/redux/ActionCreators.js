@@ -1,10 +1,10 @@
 import * as ActionTypes from './ActionTypes';
 import { serviceUrl } from '../shared/baseUrl';
 
-export const fetchQAs = () => (dispatch) => {
+export const fetchQAs = (offset) => (dispatch) => {
     dispatch(qasLoading(true));
-
-    return fetch(serviceUrl + 'api/clues')
+    console.log("fetchQAs: " + offset);
+    return fetch(serviceUrl + 'api/clues?offset='+offset)
     .then(response => {
         if (response.ok) {
           return response;
@@ -24,7 +24,8 @@ export const fetchQAs = () => (dispatch) => {
 
 export const fetchCats = (n) => (dispatch) => {
     dispatch(catLoading(true));
-    return fetch(serviceUrl + 'api/categories?count='+(n?n:6))
+    const offset = Math.random() * 1000;
+    return fetch(serviceUrl + 'api/categories?offset=' + offset + '&count='+(n?n:100))
     .then(response => {
         if (response.ok) {
           return response;
@@ -39,8 +40,9 @@ export const fetchCats = (n) => (dispatch) => {
       })
     .then(response => response.json())
     .then(cats => {
-      cats.map((cat) => dispatch(fetchCatQAs(cat.id)));
-      return dispatch(addCats(cats));
+      const c = cats.sort((a,b)=>a.clues_count<b.clues_count?1:-1).slice(0, 6); /* choose first 6 */
+      c.map((cat) => dispatch(fetchCatQAs(cat.id))); /* fetch q's for the cats */
+      return dispatch(addCats(c));
     })
     .catch(error => dispatch(qasFailed(error.message)));
 }
@@ -76,4 +78,5 @@ export const catQAsLoading = (f) => ({ type: ActionTypes.CAT_QAS_LOADING, payloa
 export const catQAsFailed = (errmess) => ({ type: ActionTypes.CAT_QAS_FAILED, payload: errmess });
 export const addCatQAs = (catId, qas) => ({ type: ActionTypes.CAT_QAS_ADD, catId: catId, payload: qas });
 
-export const filterQAs = (selectedCat) => ({ type: ActionTypes.FILTER_QAS, payload: selectedCat });
+export const filterQAsByCat = (c) => ({ type: ActionTypes.FILTER_QAS_BYCAT, payload: c });
+export const filterQAsByVal = (c) => ({ type: ActionTypes.FILTER_QAS_BYVAL, payload: c });

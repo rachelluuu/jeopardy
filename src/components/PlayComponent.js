@@ -3,19 +3,17 @@ import { Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 
-const NUM_CAT = 6;
-
 const RenderQAItem = ({ catId, row, qa }) => (
     <Card className="value col-2">
         <Link to={`/play/${catId}/${row}`} >
-            <CardBody> <center> $ {qa.value} </center> </CardBody>
+            <CardBody>$ {qa.value}</CardBody>
         </Link>
     </Card>
 );
 
 const CategoryBar = ({ cats }) => cats.map((cat) => (
     <Card className="category col-2" key={cat.id}>
-        <CardBody > {cat.title}</CardBody>
+        <CardBody >{cat.title}</CardBody>
     </Card>
 ));
 
@@ -45,10 +43,15 @@ const Play = ({ appProps }) => {
             const catId = appProps.cats.cats[c].id;
             if (appProps.catQAs) {
                 const qas = appProps.catQAs.catQAs['c' + catId];
-                if (qas)
-                    results.push((
-                        <RenderQAItem catId={catId} row={r} qa={qas[r]} />
-                    ));
+                if (qas && qas[r]) {
+                    const val = (r + 1) * 200;
+                    let i = 0;
+                    while (i < qas.length && qas[i].value !== val) i++;
+                    if (i < qas.length)
+                        results.push((<RenderQAItem key={'c' + c + 'r' + r} catId={catId} row={r} qa={qas[i]} />));
+                }
+                else
+                    console.log("Play component failre: ", qas)
             }
         };
     }

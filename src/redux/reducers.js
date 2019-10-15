@@ -1,13 +1,16 @@
 import * as ActionTypes from './ActionTypes';
 
-export const QAs = (state = { isLoading: true, qas:[] }, action) => {
+export const QAs = (state = { isLoading: true }, action) => {
         switch (action.type) {
-            case ActionTypes.QAS_LOADING: return {...state, isLoading: action.payload, errMess: null, qas: []}
+            case ActionTypes.QAS_LOADING: return {...state, isLoading: action.payload}
             case ActionTypes.QAS_FAILED: return {...state, isLoading: false, errMess: action.payload};
-            case ActionTypes.QAS_ADD: return {...state, isLoading: false, errMess: null, qas: action.payload};
+            case ActionTypes.QAS_ADD: 
+                const qs = state.qas ? state.qas : [];
+                console.log("in reducer", state);
+                return {...state, isLoading: false, errMess: null, qas: qs.concat(action.payload)};
 
-            case ActionTypes.FILTER_QAS:
-                return {...state, selectedCat: action.payload};
+            case ActionTypes.FILTER_QAS_BYCAT: return {...state, selectedCat: action.payload};
+            case ActionTypes.FILTER_QAS_BYVAL: return {...state, selectedVal: action.payload};
 
             default:
                 return state;
@@ -16,7 +19,7 @@ export const QAs = (state = { isLoading: true, qas:[] }, action) => {
 
 export const Cats = (state = { isLoading: true, cats:[]}, action) => {
         switch (action.type) {
-            case ActionTypes.CAT_LOADING: return {...state, isLoading: action.payload, errMess: null, cats: []}
+            case ActionTypes.CAT_LOADING: return {...state, isLoading: action.payload}
             case ActionTypes.CAT_FAILED: return {...state, isLoading: false, errMess: action.payload};
             case ActionTypes.CAT_ADD: return {...state, isLoading: false, errMess: null, cats: action.payload};
 
@@ -27,7 +30,7 @@ export const Cats = (state = { isLoading: true, cats:[]}, action) => {
 
 export const CatQAs = (state = { isLoading: true, catQAs:[]}, action) => {
         switch (action.type) {
-            case ActionTypes.CAT_QAS_LOADING: return {...state, isLoading: action.payload, errMess: null, cats: []}
+            case ActionTypes.CAT_QAS_LOADING: return {...state, isLoading: action.payload}
             case ActionTypes.CAT_QAS_FAILED: return {...state, isLoading: false, errMess: action.payload};
             case ActionTypes.CAT_QAS_ADD: 
               const qas = state.catQAs;

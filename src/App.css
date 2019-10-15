@@ -69,7 +69,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', end
 }
 
 .card-title {
-    background-color: #01048a!important;
+    text-align: center;
+    text-transform: capitalize;
     margin-top: .75rem;
 }
 
@@ -79,7 +80,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', end
 
 body {
     color: whitesmoke;
-    font-weight: bold;
 }
 
 a {
@@ -88,4 +88,15 @@ a {
 
 .bg-primary {
     background-color: #01048a!important;
+}
+
+.footer{
+    color: whitesmoke;
+}
+
+.category{
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: .75rem;
+    font-weight: bold;
 }

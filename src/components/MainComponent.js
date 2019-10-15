@@ -6,7 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchQAs, fetchCats, filterQAs } from '../redux/ActionCreators';
+import { fetchQAs, fetchCats, filterQAsByCat, filterQAsByVal } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => ({
@@ -16,15 +16,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchQAs: () => dispatch(fetchQAs()),
+  fetchQAs: (o) => dispatch(fetchQAs(o)),
   fetchCats: () => dispatch(fetchCats()),
-  filterQAs: (c) => dispatch(filterQAs(c))
+  filterQAsByCat: (c) => dispatch(filterQAsByCat(c)),
+  filterQAsByVal: (c) => dispatch(filterQAsByVal(c))
 });
 
 class Main extends Component {
 
   componentDidMount() {
-    this.props.fetchQAs();
+    this.props.fetchQAs(0);
     this.props.fetchCats();
   }
 

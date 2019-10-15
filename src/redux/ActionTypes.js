@@ -10,4 +10,5 @@ export const CAT_QAS_LOADING = 'CAT_QAS_LOADING';
 export const CAT_QAS_FAILED = 'CAT_QAS_FAILED';
 export const CAT_QAS_ADD = 'CAT_QAS_ADD';
 
-export const FILTER_QAS = 'FILTER_QAS';
+export const FILTER_QAS_BYCAT = 'FILTER_QAS_BYCAT';
+export const FILTER_QAS_BYVAL = 'FILTER_QAS_BYVAL';
