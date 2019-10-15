@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
-import { Loading } from './LoadingComponent';
 
 function RenderQA({qa}) {
     return (
@@ -11,6 +10,8 @@ function RenderQA({qa}) {
                     <dl className="row p-1">
                         <dt className="col-6">Answer</dt>
                         <dd className="col-6"><b>{qa.answer}</b></dd>
+                        <dt className="col-6">Category</dt>
+                        <dd className="col-6">{qa.category.title}</dd>
                         <dt className="col-6">Value</dt>
                         <dd className="col-6">{qa.value}</dd>
                         <dt className="col-6">Air Date</dt>
@@ -22,28 +23,8 @@ function RenderQA({qa}) {
     );
 }
 
-const QADetail = props => {
-    if (props.isLoading) {
-        return(
-            <div className="container">
-                <div className="row">            
-                    <Loading />
-                </div>
-            </div>
-        );
-    }
-
-    if (props.errMess) {
-        return(
-            <div className="container">
-                <div className="row">            
-                    <h4>{props.errMess}</h4>
-                </div>
-            </div>
-        );
-    }
-
-    return (
+const QADetail = props => 
+    (
         <div className="container">
         <div className="row">
             <div className="question col-12">
@@ -52,6 +33,5 @@ const QADetail = props => {
         </div>
         </div>
     );
-}
 
 export default QADetail;

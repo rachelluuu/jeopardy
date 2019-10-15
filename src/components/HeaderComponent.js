@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, pullRight } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -22,19 +22,25 @@ class Header extends Component {
             <Navbar dark expand="md">
                 <div className="container">
                     <NavbarToggler onClick={this.toggleNav} />
-                    <NavbarBrand className="mr-auto" href="/jeopardy/"><b>Jeopardy!</b></NavbarBrand>
+                    <NavbarBrand href="/jeopardy/"><b>Jeopardy!</b></NavbarBrand>
                     <Collapse isOpen={this.state.isNavOpen} navbar>
                         <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link" to='/search'><span className="fa fa-info fa-lg"></span> Search</NavLink>
+                                <NavLink className="nav-link" to='/search'>
+                                    <span className="fa fa-search fa-lg"></span>
+                                    Browse
+                                    </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/play'><span className="fa fa-list fa-lg"></span> Play</NavLink>
+                                <NavLink className="nav-link" to='/play'>
+                                    <span className="fa fa-gamepad fa-lg"></span>
+                                    Play
+                                    </NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </div>
-            </Navbar>
+            </Navbar >
         );
     }
 }

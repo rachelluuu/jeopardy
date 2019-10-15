@@ -1,12 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { QAs } from './qas';
+import { QAs, Cats, CatQAs } from './reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
-            qas: QAs
+            qas: QAs,
+            cats: Cats,
+            catQAs: CatQAs
         }),
         applyMiddleware(thunk, logger)
     );

@@ -20,11 +20,6 @@ class FilterBar extends React.Component {
     const newCat = e.currentTarget.innerText;
     console.log("FilterBar new cat: " + newCat)
     this.props.appProps.filterQAs(newCat);
-    /*
-    this.setState({
-        selectedCat: e.currentTarget.innerText
-    });
-    */
   }
 
   render() {
