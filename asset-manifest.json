@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/jeopardy/static/css/main.e654fce1.chunk.css",
-    "main.js": "/jeopardy/static/js/main.8c4796c2.chunk.js",
-    "main.js.map": "/jeopardy/static/js/main.8c4796c2.chunk.js.map",
+    "main.css": "/jeopardy/static/css/main.a9228749.chunk.css",
+    "main.js": "/jeopardy/static/js/main.3cf74ed8.chunk.js",
+    "main.js.map": "/jeopardy/static/js/main.3cf74ed8.chunk.js.map",
     "runtime-main.js": "/jeopardy/static/js/runtime-main.a21f22d2.js",
     "runtime-main.js.map": "/jeopardy/static/js/runtime-main.a21f22d2.js.map",
     "static/css/2.ce5a42f5.chunk.css": "/jeopardy/static/css/2.ce5a42f5.chunk.css",
-    "static/js/2.c80fb37c.chunk.js": "/jeopardy/static/js/2.c80fb37c.chunk.js",
-    "static/js/2.c80fb37c.chunk.js.map": "/jeopardy/static/js/2.c80fb37c.chunk.js.map",
+    "static/js/2.8958f70f.chunk.js": "/jeopardy/static/js/2.8958f70f.chunk.js",
+    "static/js/2.8958f70f.chunk.js.map": "/jeopardy/static/js/2.8958f70f.chunk.js.map",
     "index.html": "/jeopardy/index.html",
-    "precache-manifest.148cfa3006a29005c0013d03a1b92909.js": "/jeopardy/precache-manifest.148cfa3006a29005c0013d03a1b92909.js",
+    "precache-manifest.8155155ccc9037c32c38c6287533ccc4.js": "/jeopardy/precache-manifest.8155155ccc9037c32c38c6287533ccc4.js",
     "service-worker.js": "/jeopardy/service-worker.js",
     "static/css/2.ce5a42f5.chunk.css.map": "/jeopardy/static/css/2.ce5a42f5.chunk.css.map",
-    "static/css/main.e654fce1.chunk.css.map": "/jeopardy/static/css/main.e654fce1.chunk.css.map",
+    "static/css/main.a9228749.chunk.css.map": "/jeopardy/static/css/main.a9228749.chunk.css.map",
     "static/media/font-awesome.css": "/jeopardy/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.a21f22d2.js",
     "static/css/2.ce5a42f5.chunk.css",
-    "static/js/2.c80fb37c.chunk.js",
-    "static/css/main.e654fce1.chunk.css",
-    "static/js/main.8c4796c2.chunk.js"
+    "static/js/2.8958f70f.chunk.js",
+    "static/css/main.a9228749.chunk.css",
+    "static/js/main.3cf74ed8.chunk.js"
   ]
 }
