@@ -6,7 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchQAs, fetchCats, filterQAsByCat, filterQAsByVal } from '../redux/ActionCreators';
+import { fetchQAs, fetchCats, filterQAsByCat, filterQAsByVal, filterQAsByDate } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => ({
@@ -19,7 +19,8 @@ const mapDispatchToProps = dispatch => ({
   fetchQAs: (o) => dispatch(fetchQAs(o)),
   fetchCats: () => dispatch(fetchCats()),
   filterQAsByCat: (c) => dispatch(filterQAsByCat(c)),
-  filterQAsByVal: (c) => dispatch(filterQAsByVal(c))
+  filterQAsByVal: (c) => dispatch(filterQAsByVal(c)),
+  filterQAsByDate: (s,e) => dispatch(filterQAsByDate(s,e))
 });
 
 class Main extends Component {
@@ -31,15 +32,11 @@ class Main extends Component {
 
   render() {
     const SearchPage = () => (
-      <div className="container">
         <Search appProps={this.props} />
-      </div>
     );
 
     const PlayPage = () => (
-      <div className="container">
         <Play appProps={this.props} />
-      </div>
     );
 
     const QADetailPage = ({ match }) => (

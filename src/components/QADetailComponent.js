@@ -1,12 +1,19 @@
 import React from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 
+const getFormattedDate = date => {
+    const year = date.getFullYear();
+    const month = (1 + date.getMonth()).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return month + '/' + day + '/' + year;
+};
+
 function RenderQA({qa}) {
     return (
         /*<FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>*/
-            <Card>
-                <CardHeader className="bg-primary text-white"><b>{qa.question}</b></CardHeader>
-                <CardBody>
+            <Card className="detailCard">
+                <CardHeader className="detailCategory"><b>{qa.question}</b></CardHeader>
+                <CardBody className="detail">
                     <dl className="row p-1">
                         <dt className="col-6">Answer</dt>
                         <dd className="col-6"><b>{qa.answer}</b></dd>
@@ -15,7 +22,7 @@ function RenderQA({qa}) {
                         <dt className="col-6">Value</dt>
                         <dd className="col-6">{qa.value}</dd>
                         <dt className="col-6">Air Date</dt>
-                        <dd className="col-6">{qa.airdate}</dd>
+                        <dd className="col-6">{getFormattedDate(qa.airdate)}</dd>
                     </dl>
                 </CardBody>
             </Card>

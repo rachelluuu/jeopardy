@@ -14,8 +14,6 @@ class LoadMore extends React.Component {
   }
 
   render() {
-    console.log("load more: ");
-    console.log(this.props.appProps);
     return (
       <Button className="moreButton" onClick={this.clicked} disabled={this.props.appProps.qas.isLoading} > 
         {this.props.appProps.qas.isLoading ? "Loading..." : "More..." }

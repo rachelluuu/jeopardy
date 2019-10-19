@@ -80,3 +80,4 @@ export const addCatQAs = (catId, qas) => ({ type: ActionTypes.CAT_QAS_ADD, catId
 
 export const filterQAsByCat = (c) => ({ type: ActionTypes.FILTER_QAS_BYCAT, payload: c });
 export const filterQAsByVal = (c) => ({ type: ActionTypes.FILTER_QAS_BYVAL, payload: c });
+export const filterQAsByDate = (s,e) => ({ type: ActionTypes.FILTER_QAS_BYDATE, payload: {startDate: s, endDate: e} });

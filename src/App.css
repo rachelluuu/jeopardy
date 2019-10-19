@@ -1,10 +1,9 @@
 .App{
     background: #512da8; /* Old browsers */
-background: -moz-linear-gradient(top, #512da8 0%, #2989d8 100%, #207cca 100%, #6099c6 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #512da8 0%,#2989d8 100%,#207cca 100%,#6099c6 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #512da8 0%,#2989d8 100%,#207cca 100%,#6099c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', endColorstr='#6099c6',GradientType=0 ); /* IE6-9 */
-
+    background: -moz-linear-gradient(top, #512da8 0%, #2989d8 100%, #207cca 100%, #6099c6 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #512da8 0%,#2989d8 100%,#207cca 100%,#6099c6 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #512da8 0%,#2989d8 100%,#207cca 100%,#6099c6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', endColorstr='#6099c6',GradientType=0 ); /* IE6-9 */
 }
 
 .row-header {
@@ -20,13 +19,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', end
 }
 
 .footer {
+    color: lightgrey;
     background-color: #2987d7;
     margin:0px auto;
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .navbar-dark {
     background-color: #512DA8;
+}
+
+.navbar-brand {
+    padding-right: 30px;
 }
 
 .fa-search {
@@ -37,66 +41,88 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#512da8', end
     padding: 10px;
 }
 
-.page-enter {
-    opacity: 0.01;
-    transform: translateX(-100%);
-}
-
-.page-enter-active {
-    opacity: 1;
-    transform: translateX(0%);
-    transition: all 300ms ease-in;
-}
-
-.page-exit {
-    opacity: 1;
-    transform: translateX(0%);
-}
-
-.page-exit-active {
-    opacity: 0.01;
-    transform: translateX(100%);
-    transition: all 300ms ease-out;
-}
-
-.question {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.card {
-    padding: 0;
-}
-
-.card-title {
-    text-align: center;
-    text-transform: capitalize;
-    margin-top: .75rem;
-}
-
-.card-body { 
-    background-color: #01048a!important;
-}
-
-body {
-    color: whitesmoke;
-}
-
 a {
     color: #da9e52;
 }
 
-.bg-primary {
+.react-datepicker-wrapper {
+    margin: 13px 5px;
+}
+
+.card {
     background-color: #01048a!important;
+    height: 100%;
 }
 
-.footer{
-    color: whitesmoke;
+.detailCategory{
+    color: white;
 }
 
-.category{
+.detail{
+    color: white;
+}
+
+.cardTotal {
+    margin-left: auto;
+    padding: 13px;
+    color: grey;
+}
+
+.questionBoard {
+    padding: 25px;
+}
+
+.questionTile {
+    padding: 5px;
+}
+
+.questionCard {
+    margin-bottom: 10px;
+}
+
+.questionCategory {
+    font-size:  2vw;
+    color: white;
     text-align: center;
-    text-transform: capitalize;
-    margin-top: .75rem;
+    padding: 5px 10px;
+}
+
+.question {
     font-weight: bold;
+    font-size: 2vw;
+    padding: 5px;
+}
+
+.playBoard {
+    background-color: black;
+    padding: 25px;
+}
+
+.playTile {
+    padding: 5px;
+}
+
+.categoryBar {
+    padding-bottom: 20px;
+}
+
+.playCategory {
+    font-size: 2vw;
+    color: white;
+    padding: 5px;
+}
+
+.playValue { 
+    font-size: 3.9vw;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px;
+}
+
+.dropdown {
+    margin: 10px;
+}
+
+.moreButton {
+    margin-top: 10px;
 }
