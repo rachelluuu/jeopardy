@@ -6,7 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchQAs, fetchCats, filterQAsByCat, filterQAsByVal, filterQAsByDate } from '../redux/ActionCreators';
+import { fetchQAs, fetchCats } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => ({
@@ -16,11 +16,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchQAs: (o) => dispatch(fetchQAs(o)),
-  fetchCats: () => dispatch(fetchCats()),
-  filterQAsByCat: (c) => dispatch(filterQAsByCat(c)),
-  filterQAsByVal: (c) => dispatch(filterQAsByVal(c)),
-  filterQAsByDate: (s,e) => dispatch(filterQAsByDate(s,e))
+  fetchQAs: (f) => dispatch(fetchQAs(f)),
+  fetchCats: () => dispatch(fetchCats())
 });
 
 class Main extends Component {
@@ -40,7 +37,7 @@ class Main extends Component {
     );
 
     const QADetailPage = ({ match }) => (
-      <QADetail qa={this.props.qas.qas.filter((qa) => qa.id === parseInt(match.params.qaId, 10))[0]}
+      <QADetail qa={this.props.qas.data.filter((qa) => qa.id === parseInt(match.params.qaId, 10))[0]}
         isLoading={this.props.qas.isLoading}
         errMess={this.props.qas.errMess}
       />

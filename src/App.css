@@ -19,7 +19,7 @@
 }
 
 .footer {
-    color: lightgrey;
+    color: lightgray;
     background-color: #2987d7;
     margin:0px auto;
     padding-top: 10px;
@@ -49,13 +49,26 @@ a:hover {
   }
 
 .react-datepicker-wrapper {
-    margin: 13px 5px;
+    margin: 10px 5px;
+}
+
+.filterBtn {
+    height: 38px;
+    background: #2987d7;
+    text-transform: capitalize;
+}
+
+.searchBtn {
+    padding: 0px 40px;
+    margin: 10px 10px;
+    font-weight: bold;
 }
 
 .startDatePicker, .endDatePicker {
     border: 4px #512DA8;
     padding: 5px;
     border-radius: 4px;
+    background: white;
 }
 
 .card {

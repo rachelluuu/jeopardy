@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import DatePicker from "react-datepicker";
+import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 
@@ -11,77 +11,81 @@ class FilterBar extends React.Component {
     this.valToggle = this.valToggle.bind(this);
     this.catSelected = this.catSelected.bind(this);
     this.valSelected = this.valSelected.bind(this);
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
-    this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.startDateChanged = this.startDateChanged.bind(this);
+    this.endDateChanged = this.endDateChanged.bind(this);
+    this.searchClicked = this.searchClicked.bind(this);
     this.state = {
       catDropdownOpen: false,
       valDropdownOpen: false,
-      startDate: props.appProps.qas.selectedStartDate, // important since a new component seems to be created
-      endDate: props.appProps.qas.selectedEndDate
+      catId: props.appProps.qas.catId, // thse are important since a new component seems to be created
+      catTitle: props.appProps.qas.catTitle,
+      value: props.appProps.qas.value,
+      startDate: props.appProps.qas.startDate,
+      endDate: props.appProps.qas.endDate
     };
   }
 
   catToggle() { this.setState(prevState => ({ catDropdownOpen: !prevState.catDropdownOpen })); }
   valToggle() { this.setState(prevState => ({ valDropdownOpen: !prevState.valDropdownOpen })); }
 
-  catSelected(e) {
-    e.preventDefault();
-    const newCat = e.currentTarget.innerText;
-    this.props.appProps.filterQAsByCat(newCat === "Clear" ? null : newCat);
+  getText(e) {
+    const t = e.currentTarget.innerText;
+    return t === 'Clear' ? null : t;
   }
-
-  valSelected(e) {
-    e.preventDefault();
-    const newVal = e.currentTarget.innerText;
-    this.props.appProps.filterQAsByVal(newVal === "Clear" ? null : newVal);
-  }
-
-  handleStartDateChange = date => {
+  catSelected(e, f) { this.setState({ catTitle: this.getText(e), catId: this.catTitle2IdMap.get(this.getText(e)) }); }
+  valSelected(e) { this.setState({ value: (this.getText(e) && parseInt(this.getText(e), 10)) || null }); }
+  startDateChanged = date => {
     if (date) {
       date.setHours(0);
       date.setMinutes(0);
       date.setSeconds(0);
     }
-    console.log("start date change fired date,state:", date, this.state);
+    console.log('start date change fired date,state:', date, this.state);
     this.setState({ startDate: date });
-    this.props.appProps.filterQAsByDate(date, this.state.endDate);
   };
-  handleEndDateChange = date => {
+  endDateChanged = date => {
     if (date) {
       date.setHours(23);
       date.setMinutes(59);
       date.setSeconds(59);
     }
-    console.log("end date change fired date,state:", date, this.state);
+    console.log('end date change fired date,state:', date, this.state);
     this.setState({ endDate: date });
-    this.props.appProps.filterQAsByDate(this.state.startDate, date);
   };
+  searchClicked = () => {
+    this.props.appProps.fetchQAs({ ...this.state, offset: 0 });
+  };
+
+  selectedCategory() {
+
+  }
 
   render() {
     const qas = this.props.appProps.qas;
-    const fqas = qas.qas.filter((qa) => (
+    const fqas = qas.data.filter((qa) => (
       qa.question !== '' &&
-      (!qas.selectedCat || qas.selectedCat === qa.category.title) &&
-      (!qas.selectedVal || qas.selectedVal === qa.value) &&
-      (!qas.selectedStartDate || qa.airdate >= qas.selectedStartDate) &&
-      (!qas.selectedEndDate || qa.airdate <= qas.selectedEndDate)
+      (!qas.category || qas.category === qa.category.id) &&
+      (!qas.value || qas.value === qa.value) &&
+      (!qas.startDate || qa.airdate >= qas.startDate) &&
+      (!qas.endDate || qa.airdate <= qas.endDate)
     ));
 
-    const categories = [...new Set(fqas.map((qa) => qa.category.title))];
-    const catItems = categories.sort().map((cat) => (
-      <DropdownItem key={cat} onClick={this.catSelected}>{cat}</DropdownItem>
+    this.catTitle2IdMap = new Map(fqas.map(qa => [qa.category.title, qa.category.id]));
+    const sortedCategories = Array.from(this.catTitle2IdMap.entries()).sort((a, b) => (a[0] > b[0] ? 1 : -1));
+    const catItems = sortedCategories.map((cat) => (
+      <DropdownItem key={cat[0]} onClick={this.catSelected}>{cat[0]}</DropdownItem>
     ));
-    const values = [...new Set(fqas.map((qa) => qa.value))];
-    const valItems = values.sort().map((val) => (
+
+    const values = [100, 200, 400, 800, 1000];
+    const valItems = values.map((val) => (
       <DropdownItem key={val} onClick={this.valSelected}>{val}</DropdownItem>
     ));
-    const startMaxDate = this.state.endDate ? Math.min(this.props.maxDate, this.state.endDate) : this.props.maxDate;
-    const endMinDate = this.state.startDate ? Math.max(this.props.minDate, this.state.startDate) : this.props.minDate;
-    console.log('filterBar render props min,max, start max, end min:', this.props.minDate, this.props.maxDate, startMaxDate, endMinDate);
+
+    console.log('filterBar render:', this.state);
     return (
-      <div className="filterBar row">
+      <div className='filterBar row'>
         <Dropdown isOpen={this.state.catDropdownOpen} toggle={this.catToggle}>
-          <DropdownToggle caret color='primary'> Category {qas.selectedCat}</DropdownToggle>
+          <DropdownToggle className='filterBtn' caret color='secondary'> Category {this.state.catTitle}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem key='clear' onClick={this.catSelected}>Clear</DropdownItem>
             <DropdownItem divider />
@@ -89,22 +93,23 @@ class FilterBar extends React.Component {
           </DropdownMenu>
         </Dropdown>
         <Dropdown isOpen={this.state.valDropdownOpen} toggle={this.valToggle}>
-          <DropdownToggle caret color='primary'> Value {qas.selectedVal ? qas.selectedVal : ''}</DropdownToggle>
+          <DropdownToggle className='filterBtn' caret color='secondary'> Value {this.state.value || ''}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem key='clear' onClick={this.valSelected}>Clear</DropdownItem>
             <DropdownItem divider />
             {valItems}
           </DropdownMenu>
         </Dropdown>
-        <div className="dateRangePicker">
-          <DatePicker className="startDatePicker" popperPlacement='top' placeholderText='Start air date'
-            minDate={this.props.minDate} maxDate={startMaxDate} isClearable selected={this.state.startDate}
-            onChange={this.handleStartDateChange} />
-          <DatePicker className="endDatePicker" popperPlacement='top' placeholderText='End air date'
-            minDate={endMinDate} maxDate={this.props.maxDate} isClearable selected={this.state.endDate}
-            onChange={this.handleEndDateChange} />
+        <div className='dateRangePicker'>
+          <DatePicker className='filterBtn startDatePicker' popperPlacement='top' placeholderText='Start air date'
+            maxDate={this.state.endDate ? this.state.endDate : new Date()} isClearable selected={this.state.startDate}
+            onChange={this.startDateChanged} />
+          <DatePicker className='filterBtn endDatePicker' popperPlacement='top' placeholderText='End air date'
+            minDate={this.state.startDate ? this.state.startDate : null} maxDate={new Date()} isClearable selected={this.state.endDate}
+            onChange={this.endDateChanged} />
         </div>
-        <div className="cardTotal">Showing {fqas.length} Questions</div>
+        <Button className='filterBtn searchBtn' color='primary' onClick={this.searchClicked}>Search</Button>
+        <div className='cardTotal'>Showing {fqas.length} Questions</div>
       </div>
     );
   }

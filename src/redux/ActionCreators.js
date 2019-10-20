@@ -1,10 +1,20 @@
 import * as ActionTypes from './ActionTypes';
 import { serviceUrl } from '../shared/baseUrl';
+import { getFormattedDate } from '../shared/helper';
 
-export const fetchQAs = (offset) => (dispatch) => {
+export const fetchQAs = (f) => (dispatch) => {
     dispatch(qasLoading(true));
-    console.log("fetchQAs: " + offset);
-    return fetch(serviceUrl + 'api/clues?offset='+offset)
+    let url = serviceUrl + 'api/clues?' +
+      'offset=' + ((f && f.offset) || 0) +
+      (f.catId ? '&category='+f.catId : '') +
+      (f.value ? '&value='+f.value : '') + 
+      (f.startDate && f.endDate ? // work around a bug in jService.io where min/max date is flipped if only 1 of them is specified
+        '&min_date='+getFormattedDate(f.startDate)+'&max_date='+getFormattedDate(f.endDate) : 
+        ((f.startDate ? '&max_date='+getFormattedDate(f.startDate) : '') + 
+         (f.endDate ? '&min_date='+getFormattedDate(f.endDate) : ''))
+      );
+    console.log("fetchQAs: ", url, f);
+    return fetch(url)
     .then(response => {
         if (response.ok) {
           return response;
@@ -18,7 +28,7 @@ export const fetchQAs = (offset) => (dispatch) => {
         throw errmess;
       })
     .then(response => response.json())
-    .then(qas => dispatch(addQAs(qas)))
+    .then(qas => dispatch(addQAs(f, qas)))
     .catch(error => dispatch(qasFailed(error.message)));
 }
 
@@ -68,7 +78,7 @@ export const fetchCatQAs = (catId) => (dispatch) => {
 
 export const qasLoading = (f) => ({ type: ActionTypes.QAS_LOADING, payload: f });
 export const qasFailed = (errmess) => ({ type: ActionTypes.QAS_FAILED, payload: errmess });
-export const addQAs = (qas) => ({ type: ActionTypes.QAS_ADD, payload: qas });
+export const addQAs = (f, q) => ({ type: ActionTypes.QAS_ADD, payload: {...f, qas: q }});
 
 export const catLoading = (f) => ({ type: ActionTypes.CAT_LOADING, payload: f });
 export const catFailed = (errmess) => ({ type: ActionTypes.CAT_FAILED, payload: errmess });
@@ -77,7 +87,3 @@ export const addCats = (cats) => ({ type: ActionTypes.CAT_ADD, payload: cats });
 export const catQAsLoading = (f) => ({ type: ActionTypes.CAT_QAS_LOADING, payload: f });
 export const catQAsFailed = (errmess) => ({ type: ActionTypes.CAT_QAS_FAILED, payload: errmess });
 export const addCatQAs = (catId, qas) => ({ type: ActionTypes.CAT_QAS_ADD, catId: catId, payload: qas });
-
-export const filterQAsByCat = (c) => ({ type: ActionTypes.FILTER_QAS_BYCAT, payload: c });
-export const filterQAsByVal = (c) => ({ type: ActionTypes.FILTER_QAS_BYVAL, payload: c });
-export const filterQAsByDate = (s,e) => ({ type: ActionTypes.FILTER_QAS_BYDATE, payload: {startDate: s, endDate: e} });

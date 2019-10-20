@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import FilterBar from './FilterBarComponent';
 import LoadMore from './LoadMoreComponent';
+import { getFormattedDate } from '../shared/helper';
 
 const RenderQAItem = ({ qa }) => (
     <Link to={`/search/${qa.id}`} >
@@ -15,7 +16,7 @@ const RenderQAItem = ({ qa }) => (
 );
 
 const Search = ({ appProps }) => {
-    if (appProps.qas.isLoading && !appProps.qas.qas) {
+    if (appProps.qas.isLoading && !appProps.qas.data) {
         return (<div className="row"><Loading /> </div>);
     }
 
@@ -23,13 +24,13 @@ const Search = ({ appProps }) => {
         return (<div className="col-12"> <h4>{appProps.qas.errMess}</h4> </div>);
     }
 
-    const selectedCat = appProps.qas.selectedCat;
-    const selectedVal = appProps.qas.selectedVal;
-    const selectedStartDate = appProps.qas.selectedStartDate;
-    const selectedEndDate = appProps.qas.selectedEndDate;
-    const catValQas = appProps.qas.qas.filter((qa) => (
+    const selectedCatId = appProps.qas.category;
+    const selectedVal = appProps.qas.value;
+    const selectedStartDate = appProps.qas.startDate;
+    const selectedEndDate = appProps.qas.endDate;
+    const catValQas = appProps.qas.data.filter((qa) => (
         qa.question !== '' &&
-        (!selectedCat || selectedCat === qa.category.title) &&
+        (!selectedCatId || selectedCatId === qa.category.id) &&
         (!selectedVal || selectedVal === qa.value)));
     const results = catValQas.filter((qa) => (
         (!selectedStartDate || qa.airdate >= selectedStartDate) &&

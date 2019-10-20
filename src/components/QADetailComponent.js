@@ -1,12 +1,6 @@
 import React from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
-
-const getFormattedDate = date => {
-    const year = date.getFullYear();
-    const month = (1 + date.getMonth()).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return month + '/' + day + '/' + year;
-};
+import { getFormattedDate } from '../shared/helper';
 
 function RenderQA({qa}) {
     return (

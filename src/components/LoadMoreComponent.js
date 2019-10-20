@@ -9,8 +9,7 @@ class LoadMore extends React.Component {
 
   clicked(e) {
     e.preventDefault();
-    const n = this.props.appProps.qas.qas.length;
-    this.props.appProps.fetchQAs(n);
+    this.props.appProps.fetchQAs(this.props.appProps.qas);
   }
 
   render() {
