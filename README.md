@@ -5,7 +5,7 @@ and can be viewed at [https://rachelluuu.github.io/jeopardy](https://rachelluuu.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses the [jService API](http://jservice.io).
 
 ### Search
-The web app can search previous Jeopardy! questions based on category, difficulty (value) and/or date aired. The website will display the first 100 results of the search, and an additional 100 results can be viewed by clicking the 'More ..." button at the bottom of the page.
+The web app can search previous Jeopardy! questions based on category, difficulty (value) and/or date aired. The website will display the first 100 results of the search, and an additional 100 results can be viewed by clicking the 'More ..." button at the bottom of the page. The Search button is disabled until a new search query is selected to minimize redundant API calls.
 
 During development, I noticed two problems in the API:
 (1) Invalid data.
