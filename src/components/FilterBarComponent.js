@@ -4,11 +4,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 
+// Contains the React Components for searching by category, value, and date
 class FilterBar extends React.Component {
   constructor(props) {
     super(props);
-    this.catToggle = this.catToggle.bind(this);
-    this.valToggle = this.valToggle.bind(this);
+    this.catToggled = this.catToggled.bind(this);
+    this.valToggled = this.valToggled.bind(this);
     this.catSelected = this.catSelected.bind(this);
     this.valSelected = this.valSelected.bind(this);
     this.startDateChanged = this.startDateChanged.bind(this);
@@ -17,6 +18,7 @@ class FilterBar extends React.Component {
     this.state = {
       catDropdownOpen: false,
       valDropdownOpen: false,
+      searchEnabled: false,
       catId: props.appProps.qas.catId, // thse are important since a new component seems to be created
       catTitle: props.appProps.qas.catTitle,
       value: props.appProps.qas.value,
@@ -25,45 +27,62 @@ class FilterBar extends React.Component {
     };
   }
 
-  catToggle() { this.setState(prevState => ({ catDropdownOpen: !prevState.catDropdownOpen })); }
-  valToggle() { this.setState(prevState => ({ valDropdownOpen: !prevState.valDropdownOpen })); }
+  //Update the category and value dropdowns based on user selections
+  catToggled() {
+    this.setState(prevState => ({ catDropdownOpen: !prevState.catDropdownOpen }));
+  }
+  valToggled() {
+    this.setState(prevState => ({ valDropdownOpen: !prevState.valDropdownOpen }));
+  }
 
   getText(e) {
     const t = e.currentTarget.innerText;
-    return t === 'Clear' ? null : t;
+    return t === 'Clear' ? null : t; // Clear means reset to search for all
   }
-  catSelected(e, f) { this.setState({ catTitle: this.getText(e), catId: this.catTitle2IdMap.get(this.getText(e)) }); }
-  valSelected(e) { this.setState({ value: (this.getText(e) && parseInt(this.getText(e), 10)) || null }); }
+
+  catSelected(e, f) {
+    this.setState({
+      searchEnabled: true,
+      catId: this.catTitle2IdMap.get(this.getText(e)),
+      catTitle: this.getText(e)
+    });
+  }
+
+  valSelected(e) {
+    this.setState({
+      searchEnabled: true,
+      value: (this.getText(e) && parseInt(this.getText(e), 10)) || null
+    });
+  }
+
+  //Update the start and end date based on user selections
   startDateChanged = date => {
     if (date) {
       date.setHours(0);
       date.setMinutes(0);
       date.setSeconds(0);
     }
-    console.log('start date change fired date,state:', date, this.state);
-    this.setState({ startDate: date });
+    this.setState({ searchEnabled: true, startDate: date });
   };
+
   endDateChanged = date => {
     if (date) {
       date.setHours(23);
       date.setMinutes(59);
       date.setSeconds(59);
     }
-    console.log('end date change fired date,state:', date, this.state);
-    this.setState({ endDate: date });
+    this.setState({ searchEnabled: true, endDate: date });
   };
+
+  //Search for the results, given the category, value, and/or dates supplied
   searchClicked = () => {
     this.props.appProps.fetchQAs({ ...this.state, offset: 0 });
   };
 
-  selectedCategory() {
-
-  }
-
+  // display the most recent search query in the filter bar
   render() {
     const qas = this.props.appProps.qas;
     const fqas = qas.data.filter((qa) => (
-      qa.question !== '' &&
       (!qas.category || qas.category === qa.category.id) &&
       (!qas.value || qas.value === qa.value) &&
       (!qas.startDate || qa.airdate >= qas.startDate) &&
@@ -81,19 +100,18 @@ class FilterBar extends React.Component {
       <DropdownItem key={val} onClick={this.valSelected}>{val}</DropdownItem>
     ));
 
-    console.log('filterBar render:', this.state);
     return (
       <div className='filterBar row'>
-        <Dropdown isOpen={this.state.catDropdownOpen} toggle={this.catToggle}>
-          <DropdownToggle className='filterBtn' caret color='secondary'> Category {this.state.catTitle}</DropdownToggle>
+        <Dropdown isOpen={this.state.catDropdownOpen} toggle={this.catToggled}>
+          <DropdownToggle className='filterBtn' caret color='primary'> Category {this.state.catTitle}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem key='clear' onClick={this.catSelected}>Clear</DropdownItem>
             <DropdownItem divider />
             {catItems}
           </DropdownMenu>
         </Dropdown>
-        <Dropdown isOpen={this.state.valDropdownOpen} toggle={this.valToggle}>
-          <DropdownToggle className='filterBtn' caret color='secondary'> Value {this.state.value || ''}</DropdownToggle>
+        <Dropdown isOpen={this.state.valDropdownOpen} toggle={this.valToggled}>
+          <DropdownToggle className='filterBtn' caret color='primary'> Value {this.state.value || ''}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem key='clear' onClick={this.valSelected}>Clear</DropdownItem>
             <DropdownItem divider />
@@ -108,7 +126,7 @@ class FilterBar extends React.Component {
             minDate={this.state.startDate ? this.state.startDate : null} maxDate={new Date()} isClearable selected={this.state.endDate}
             onChange={this.endDateChanged} />
         </div>
-        <Button className='filterBtn searchBtn' color='primary' onClick={this.searchClicked}>Search</Button>
+        <Button className='filterBtn searchBtn' color='primary' disabled={!this.state.searchEnabled} onClick={this.searchClicked}>Search</Button>
         <div className='cardTotal'>Showing {fqas.length} Questions</div>
       </div>
     );

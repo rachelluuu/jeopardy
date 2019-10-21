@@ -41,6 +41,10 @@
     padding: 10px;
 }
 
+.logo {
+    height: 30px;
+}
+
 a {
     color: #da9e52;
 }
@@ -61,6 +65,7 @@ a:hover {
 .searchBtn {
     padding: 0px 40px;
     margin: 10px 10px;
+    background: #2987d7;
     font-weight: bold;
 }
 

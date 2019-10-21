@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Footer of web app
 function Footer(props) {
     return (
         <div className="footer">

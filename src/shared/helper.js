@@ -1,3 +1,4 @@
+// Pretty-prints the date as MM/DD/YYYY
 export const getFormattedDate = date => {
     const year = date.getFullYear();
     const month = (1 + date.getMonth()).toString().padStart(2, '0');

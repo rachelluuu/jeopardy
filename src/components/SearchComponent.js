@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import FilterBar from './FilterBarComponent';
 import LoadMore from './LoadMoreComponent';
-import { getFormattedDate } from '../shared/helper';
 
+// Show the category and question on the Search page
 const RenderQAItem = ({ qa }) => (
     <Link to={`/search/${qa.id}`} >
         <Card className="questionCard">
@@ -15,21 +15,19 @@ const RenderQAItem = ({ qa }) => (
     </Link>
 );
 
+// Show the corresponding search results based on the user-inputed search parameters
 const Search = ({ appProps }) => {
-    if (appProps.qas.isLoading && !appProps.qas.data) {
+    if (appProps.qas.isLoading && !appProps.qas.data)
         return (<div className="row"><Loading /> </div>);
-    }
 
-    if (appProps.qas.errMess) {
+    if (appProps.qas.errMess)
         return (<div className="col-12"> <h4>{appProps.qas.errMess}</h4> </div>);
-    }
 
     const selectedCatId = appProps.qas.category;
     const selectedVal = appProps.qas.value;
     const selectedStartDate = appProps.qas.startDate;
     const selectedEndDate = appProps.qas.endDate;
     const catValQas = appProps.qas.data.filter((qa) => (
-        qa.question !== '' &&
         (!selectedCatId || selectedCatId === qa.category.id) &&
         (!selectedVal || selectedVal === qa.value)));
     const results = catValQas.filter((qa) => (
@@ -39,7 +37,6 @@ const Search = ({ appProps }) => {
         <div className="questionTile col-lg-3 col-md-6 col-12" key={qa.id}>
             <RenderQAItem qa={qa} />
         </div>));
-    console.log("search render: ", selectedStartDate, selectedEndDate, catValQas.length, results.length);
     return (
         <div className="questionBoard">
             <FilterBar appProps={appProps} minDate={new Date(Math.min(...catValQas.map(qa => qa.airdate)))} maxDate={new Date(Math.max(...catValQas.map(qa => qa.airdate)))} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
+// Get more results if user clicks "More..." at the bottom of search results
 class LoadMore extends React.Component {
   constructor(props) {
     super(props);
@@ -14,8 +15,8 @@ class LoadMore extends React.Component {
 
   render() {
     return (
-      <Button className="moreButton" onClick={this.clicked} disabled={this.props.appProps.qas.isLoading} > 
-        {this.props.appProps.qas.isLoading ? "Loading..." : "More..." }
+      <Button className="moreButton" onClick={this.clicked} disabled={this.props.appProps.qas.isLoading} >
+        {this.props.appProps.qas.isLoading ? "Loading..." : "More..."}
       </Button>
     );
   }
