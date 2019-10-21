@@ -33,6 +33,11 @@
     padding-right: 30px;
 }
 
+.nav-link {
+    font-weight: bold;
+    font-size: large;
+}
+
 .fa-search {
     padding: 10px;
 }
@@ -60,13 +65,13 @@ a:hover {
     height: 38px;
     background: #2987d7;
     text-transform: capitalize;
+    font-weight: bold;
 }
 
 .searchBtn {
     padding: 0px 40px;
     margin: 10px 10px;
-    background: #2987d7;
-    font-weight: bold;
+    background: #2987d7 !important;
 }
 
 .startDatePicker, .endDatePicker {

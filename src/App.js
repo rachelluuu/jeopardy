@@ -7,8 +7,8 @@ import { ConfigureStore } from './redux/configureStore';
 
 const store = ConfigureStore();
 
+// Create the web app 
 class App extends Component {
-
   render() {
     return (
       <Provider store={store}>

@@ -3,6 +3,7 @@ import { QAs, Cats, CatQAs } from './reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+// Store a redux setup
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
