@@ -18,7 +18,7 @@ class Header extends Component {
         return (
             <Navbar dark expand="md" fixed="top" >
                 <NavbarToggler onClick={this.toggleNav} />
-                <NavbarBrand className="mr-auto" href="/jeopardy/"><img className='logo' src='/assets/images/logo.png' alt='Jeopardy!' /></NavbarBrand>
+                <NavbarBrand className="mr-auto" href="/jeopardy/"><img className='logo' src='./assets/images/logo.png' alt='Jeopardy!' /></NavbarBrand>
                 <Collapse isOpen={this.state.isNavOpen} navbar>
                     <Nav navbar>
                         <NavItem>
