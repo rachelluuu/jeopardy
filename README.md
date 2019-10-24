@@ -1,8 +1,8 @@
 ### About the App
 This website was developed for Capital One's Software Engineering Summit Challenge
-and can be viewed at [https://rachelluuu.github.io/jeopardy](https://rachelluuu.github.io/jeopardy). The main features of the app are Search and Play.
+and can be viewed at [https://rachelluuu.github.io/jeopardy](https://rachelluuu.github.io/jeopardy). Using the [jService API](http://jservice.io), the main features of the app are Search and Play.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses the [jService API](http://jservice.io).
+This project was built as a Single Page Application with React/Redux, and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). With a responsive UI design, the website accomodates different screen sizes so that everyone is free to explore the wonderful world of Jeopardy!
 
 ### Search
 The web app can search previous Jeopardy! questions based on category, difficulty (value) and/or date aired. The website will display the first 100 results of the search, and an additional 100 results can be viewed by clicking the 'More ..." button at the bottom of the page. The Search button is disabled until a new search query is selected to minimize redundant API calls.
@@ -14,6 +14,8 @@ During development, I noticed two problems in the API:
 
 ### Play
 As an additional feature, under the 'Play' tab, a new Jeopardy! game board is generated after each refresh. The point value can be clicked to view the answer, and users can use the browser's back button to return to their same board. Since different rounds of Jeopardy use different values, I chose to standardize the board to have values of 200, 400, 600, 800, and 1000, thus avoiding the issue of having different categories being weighted differently.
+
+Given additional time, futher improvements to the app would be dedicated to making the Play board into an  interactive multiplayer simulation of a Jeopardy! game.
 
 ### Running The App
 To run the app in the development mode, run 'npm start' and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
