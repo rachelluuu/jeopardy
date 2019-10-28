@@ -7,7 +7,7 @@ export const QAs = (state = { isLoading: true }, action) => {
         case ActionTypes.QAS_FAILED: 
             return {...state, isLoading: false, errMess: action.payload};
         case ActionTypes.QAS_ADD: 
-            const oldQs = action.payload.offset>0 && state.qas ? state.qas : [];
+            const oldQs = action.payload.offset>0 && state.data ? state.data : [];
             const newQs = action.payload.qas.map((q) => ({...q, airdate: new Date(q.airdate)}));
             action.payload.qas = null;
             return {...state, 
